@@ -2,9 +2,11 @@ import Image from 'next/image'
 import { BellIcon, SearchIcon, UserCircleIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import useAuth from '../hooks/useAuth'
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
+  const { logOut } = useAuth()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,11 +40,11 @@ const Header = () => {
         <SearchIcon className='hidden sm:inline h-6 w-6' />
         <p className='hidden lg:inline'>Kids</p>
         <BellIcon className='sm:inline h-6 w-6' />
-        <Link href='/account'>
-          <a>
-            <UserCircleIcon className='sm:inline h-6 w-6' />
-          </a>
-        </Link>
+        {/* <Link href='/account'> */}
+        <a>
+          <UserCircleIcon className='sm:inline h-6 w-6' onClick={logOut} />
+        </a>
+        {/* </Link> */}
       </div>
     </header>
   )
